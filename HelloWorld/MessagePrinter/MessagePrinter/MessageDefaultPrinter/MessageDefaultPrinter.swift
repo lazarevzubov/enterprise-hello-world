@@ -10,12 +10,21 @@ struct MessageDefaultPrinter: MessagePrinter {
 
     // MARK: - Properties
 
-    /// The message to print.
-    let message: Printable
-
     // MARK: MessagePrinter protocol properties
 
     weak var delegate: MessagePrinterDelegate?
+
+    // MARK: Private methods
+
+    private let message: Printable
+
+    // MARK: - Initialization
+
+    /// Creates an object that prints messages to the console.
+    /// - Parameter message: The message to print.
+    init(message: Printable) {
+        self.message = message
+    }
 
     // MARK: - Methods
 

@@ -45,9 +45,9 @@ final class MessageDefaultPrinterBuilder {
     /// Builds the printer with previously provided parameters.
     /// - Throws: [The empty message error](x-source-tag://MessageDefaultPrinterBuilderErrorEmptyMessage) if a message wasn't set.
     /// - Returns: The ready to user printer.
-    func build() throws -> MessagePrinter {
-        guard let message = message else {
-            throw MessageDefaultPrinterBuilderError.emptyMessage
+    func build() throws(MessageDefaultPrinterBuilderError) -> MessagePrinter {
+        guard let message else {
+            throw .emptyMessage
         }
 
         var printer = MessageDefaultPrinter(message: message)

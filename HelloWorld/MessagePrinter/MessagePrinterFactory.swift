@@ -23,14 +23,16 @@ struct MessagePrinterFactory {
     /// - Parameter delegate: The object delegated on milestones of the printing process.
     /// - Throws: [The internal builder error](x-source-tag://MessagePrinterFactoryErrorBuilderError) if the underlying building process fails.
     /// - Returns: The ready to use printer.
-    static func makeHelloWorldPrinter(delegate: MessagePrinterDelegate? = nil) throws -> MessagePrinter {
+    static func makeHelloWorldPrinter(
+        delegate: MessagePrinterDelegate? = nil
+    ) throws(MessagePrinterFactoryError) -> MessagePrinter {
         do {
             return try MessageDefaultPrinterBuilder()
                 .with(message: "Hello world!")
                 .with(delegate: delegate)
                 .build()
         } catch {
-            throw MessagePrinterFactoryError.builderError
+            throw .builderError
         }
     }
 
